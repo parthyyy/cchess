@@ -4,7 +4,6 @@ Tests the game.c module.
 
 */
 
-
 #include <stdio.h>
 
 #include "game.h"
