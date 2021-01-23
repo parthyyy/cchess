@@ -169,6 +169,5 @@ int get_yn(char* buffer, const int buffer_size, const int turn)
 	{
 		input = get_command(buffer, buffer_size, turn);
 	} while ((answer = validate_yn(input)) == ILLEGAL);
-
 	return answer;
 }

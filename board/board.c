@@ -30,7 +30,7 @@ void flip_board(int* p_orient)
 */
 
 // ADD uint64_t board IF USING BITBOARDS else ADD char board[][]
-void print_board(const int orient, const int turn, const int ascii)
+void print_board(/* board, */const int orient, const int turn, const int ascii)
 {
 	char ascii_top_bottom[] = "   +-------------------------------+\n";
 	//char ascii_row[]        = "   ---------------------------------\n";
