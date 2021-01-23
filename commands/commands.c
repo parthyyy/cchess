@@ -44,11 +44,10 @@ char* get_command(char* buffer, const int buffer_size, const int turn)
 		printf("White >>> ");
 	}
 
-	fgets(buffer, buffer_size, stdin);
-	while ((token = strtok(buffer, delims)) == NULL)
+	do
 	{
 		fgets(buffer, buffer_size, stdin);
-	}
+	} while ((token = strtok(buffer, delims)) == NULL);
 
 	// returning local ptr, but only the address it contains
 	// is important. main() will still be able to use it because
@@ -131,27 +130,45 @@ int validate_command(char* command)
 	return ILLEGAL;
 }
 
+/* validate_yn()
+	@str 		any string
+
+	Checks if a string is a yes-no response. 
+	Returns the appropriate macro.
+*/
+static int validate_yn(char* str)
+{
+	to_lowercase(str);
+
+	if (!strcmp(str, "yes") || !strcmp(str, "y"))
+	{
+		return YES;
+	}
+	else if (!strcmp(str, "no") || !strcmp(str, "n"))
+	{
+		return NO;
+	}
+	return ILLEGAL;
+}
+
 /* get_yn()
 	@buffer 	char array to place user's input
 	@buffer_size 	max num of chars to read, including '\0'
 	@turn 		current turn: BLACK or WHITE
 
-	@return 	user's input, YES or NO, or ILLEGAL if other
+	@return 	user's answer, YES or NO
 
-	Gets a yes-no response from user input.
+	Gets a yes-no response from user input. Asks for input until
+	valid response is given.
 */
 int get_yn(char* buffer, const int buffer_size, const int turn)
 {
-	char* input = get_command(buffer, buffer_size, turn);
-	to_lowercase(input);
+	char* input = NULL;
+	int answer;
+	do
+	{
+		input = get_command(buffer, buffer_size, turn);
+	} while ((answer = validate_yn(input)) == ILLEGAL);
 
-	if (!strcmp(input, "yes") || !strcmp(input, "y"))
-	{
-		return YES;
-	}
-	else if (!strcmp(input, "no") || !strcmp(input, "n"))
-	{
-		return NO;
-	}
-	return ILLEGAL;
+	return answer;
 }

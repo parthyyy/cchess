@@ -27,13 +27,9 @@ int main(void)
 	{
 		printf("%i NO\n", yes_no);
 	}
-	else if (yes_no == YES)
-	{
-		printf("%i YES\n", yes_no);
-	}
 	else
 	{
-		printf("%i WHAT?\n", yes_no);
+		printf("%i YES\n", yes_no);
 	}
 
 	while (1)
