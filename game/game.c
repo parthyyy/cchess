@@ -72,28 +72,29 @@ int offer_draw(char* buffer, const int buffer_size, const int turn)
 */
 void help(void)
 {
-	printf("\n                         ********* HELP MENU *********\n");
-	printf("\nCOMMAND LIST.\n");
-	printf("    1. r        Resign - forfeit and give your opponent victory.\n");
-	printf("    2. d        Draw   - offer a draw to your opponent.\n");
-	printf("    3. f        Flip   - flip the orientation of the board.\n");
-	printf("    4. q        Quit   - quit the program (not the game!)\n");
-	printf("    5. h        Help   - display this message.\n");
+	// I used puts() to make the line length shorter
+	puts("\n                 ********* HELP MENU *********");
+	puts("\nCOMMAND LIST.");
+	puts("   1. r    Resign - forfeit and give your opponent victory.");
+	puts("   2. d    Draw   - offer a draw to your opponent.");
+	puts("   3. f    Flip   - flip the orientation of the board.");
+	puts("   4. q    Quit   - quit the program (not the game!)");
+	puts("   5. h    Help   - display this message.");
 
-	printf("\nMOVING PIECES.\n");
-	printf("    Enter moves in long algebraic notation. Specify the starting\n");
-	printf("    square, and then the ending square. For example: e2e4\n");
-	printf("    For pawn promotion, specify the piece abbreviation after the\n");
-	printf("    move. For example: d7d8q e7e8r a7a8b h7h8n\n");
+	puts("\nMOVING PIECES.");
+	puts("   Enter moves in long algebraic notation. Specify the starting");
+	puts("   square, and then the ending square. For example: e2e4");
+	puts("   For pawn promotion, specify the piece abbreviation after the");
+	puts("   move. For example: d7d8q e7e8r a7a8b h7h8n");
 
-	printf("\nALL COMMANDS ARE CASE INSENSITIVE!\n");
-	printf("    There is no difference between any of these:\n");
+	puts("\nALL COMMANDS ARE CASE INSENSITIVE!");
+	puts("   There is no difference between any of these:");
 
-	printf("        e2e4  E2E4\n");
-	printf("        e7e8q E7E8Q\n");
-	printf("        e2E3  E2e3\n");
-	printf("        Q     q\n");
+	puts("      e2e4  E2E4");
+	puts("      e7e8q E7E8Q");
+	puts("      e2E3  E2e3");
+	puts("      Q     q");
 
-	printf("\nPRESS ENTER TO CONTINUE. . . ");
+	puts("\nPRESS ENTER TO CONTINUE. . . ");
 	getchar();
 }

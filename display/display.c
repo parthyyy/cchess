@@ -1,6 +1,7 @@
-/** board.c
+/** display.c
 
-Prints the chess board. ASCII and unicode supported
+Functions for displaying the chess board. ASCII and 
+unicode supported.
 Implements FLIP command: flip the board's orientation
 
 See ./text/ for examples of printed boards.
@@ -10,7 +11,7 @@ See ./text/ for examples of printed boards.
 #include <stdio.h>
 
 /* flip_board()
-	@p_orient	ptr to variable of the board's orientation
+	@p_orient	ptr to the board's orientation
 
 	Flips the orientation of the board.
 	int orient should be set to the macro WHITE or BLACK from colors.h

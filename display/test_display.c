@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "board.h"
+#include "display.h"
 #include "../colors.h"
 
 void print_color(int color)
