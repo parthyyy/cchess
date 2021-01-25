@@ -87,9 +87,10 @@ int validate_command(char* command)
 {
 	// convert to lowercase for easier checking
 	to_lowercase(command);
-	
+        int len = strlen(command);
+
 	// single-char commands
-	if (strlen(command) == 1)
+	if (len == 1)
 	{
 		switch (command[0])
 		{
@@ -103,7 +104,7 @@ int validate_command(char* command)
 	// if not a single char, it must be a move command
 
 	// validate pawn promotion piece
-	if (strlen(command) == 5)
+	if (len == 5)
 	{
 		switch (command[4])
 		{
@@ -115,6 +116,7 @@ int validate_command(char* command)
 		}
 	}
 
+        // valid long algebraic notation:
 	// char* "e 2 e 4"
 	// index  0 1 2 3
 	int char0 = command[0] >= 'a' && command[0] <= 'h';
@@ -123,7 +125,11 @@ int validate_command(char* command)
 	int char1 = command[1] >= '1' && command[1] <= '8';
 	int char3 = command[3] >= '1' && command[3] <= '8';
 
-	if (char0 && char1 && char2 && char3)
+        // can't move to the same square
+        int same_file = command[0] == command[2];
+        int same_rank = command[1] == command[3];
+
+	if (char0 && char1 && char2 && char3 && !(same_file && same_rank))
 	{
 		return MOVE;
 	}
