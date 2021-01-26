@@ -139,7 +139,7 @@ int validate_command(char* command)
 /* validate_yn()
 	@str 		any string
 
-	Checks if a string is a yes-no response. 
+	Checks if a string is a yes or no. 
 	Returns the appropriate macro.
 */
 static int validate_yn(char* str)
