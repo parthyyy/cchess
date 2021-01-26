@@ -1,4 +1,6 @@
-board/test_main
-commands/test_main
-game/test_main
-com-test/
+display/test_display
+commands/test_commands
+commands/com-test/
+game/test_game
+tests/
+
