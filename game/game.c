@@ -46,14 +46,9 @@ int quit(char* buffer, const int buffer_size, const int turn)
 int offer_draw(char* buffer, const int buffer_size, const int turn)
 {
 	int accepted;
-	if (turn == BLACK)
-	{
-		printf("\nBlack offers a draw.\n");
-	}
-	else
-	{
-		printf("\nWhite offers a draw.\n");
-	}
+
+	turn == BLACK ? printf("\nBlack") : printf("\nWhite");
+	printf(" offers a draw.\n");
 
 	// prompting the OPPONENT now, so use !turn
 	printf("Do you accept?\n");

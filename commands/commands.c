@@ -35,14 +35,7 @@ char* get_command(char* buffer, const int buffer_size, const int turn)
 	char delims[] = " \r\n\t";
 	char* token = NULL;
 
-	if (turn == BLACK)
-	{
-		printf("Black >>> ");
-	}
-	else
-	{
-		printf("White >>> ");
-	}
+	turn == BLACK ? printf("Black >>> ") : printf("White >>> ");
 
 	do
 	{
@@ -85,9 +78,10 @@ static void to_lowercase(char* s)
 */
 int validate_command(char* command)
 {
+	int len = strlen(command);
+
 	// convert to lowercase for easier checking
 	to_lowercase(command);
-        int len = strlen(command);
 
 	// single-char commands
 	if (len == 1)

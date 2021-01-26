@@ -3,4 +3,4 @@ commands/test_commands
 commands/com-test/
 game/test_game
 tests/
-
+boards/
