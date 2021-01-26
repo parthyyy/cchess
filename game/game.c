@@ -30,6 +30,8 @@ int resign(char* buffer, const int buffer_size, const int turn)
 /* quit()
 
 	Quit the game. Asks for confirmation.
+	I know I'm violating DRY but I can't find a nice solution of
+	condensing quit() and resign() without using more lines of code.
 */
 int quit(char* buffer, const int buffer_size, const int turn)
 {
