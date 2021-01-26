@@ -119,11 +119,7 @@ int validate_command(char* command)
 	int char1 = command[1] >= '1' && command[1] <= '8';
 	int char3 = command[3] >= '1' && command[3] <= '8';
 
-        // can't move to the same square
-        int same_file = command[0] == command[2];
-        int same_rank = command[1] == command[3];
-
-	if (char0 && char1 && char2 && char3 && !(same_file && same_rank))
+	if (char0 && char1 && char2 && char3)
 	{
 		return MOVE;
 	}
