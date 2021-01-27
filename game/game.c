@@ -31,7 +31,8 @@ int resign(char* buffer, const int buffer_size, const int turn)
 
 	Quit the game. Asks for confirmation.
 	I know I'm violating DRY but I can't find a nice solution of
-	condensing quit() and resign() without using more lines of code.
+	condensing quit() and resign() without using even more lines
+	of code.
 */
 int quit(char* buffer, const int buffer_size, const int turn)
 {
@@ -50,8 +51,8 @@ int offer_draw(char* buffer, const int buffer_size, const int turn)
 	turn == BLACK ? printf("\nBlack") : printf("\nWhite");
 	printf(" offers a draw.\n");
 
-	// prompting the OPPONENT now, so use !turn
 	printf("Do you accept?\n");
+	// prompting the OPPONENT now, so use !turn
 	accepted = get_yn(buffer, buffer_size, !turn);
 
 	if (accepted)

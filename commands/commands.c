@@ -93,7 +93,7 @@ static int validate_promotion(char* command)
 	int sq1 = command[0] >= 'a' && command[0] <= 'h';
 	int sq2 = command[2] >= 'a' && command[2] <= 'h';
 
-	// the check for promo_sq will check for moves like
+	// the check for promo_sq WILL approve moves like
 	// h7i8q, but sq1 and sq2 take care of that
 	int promo_sq =  command[0] == command[2]-1 ||
 			command[0] == command[2]   ||

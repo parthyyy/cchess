@@ -30,6 +30,9 @@ produce an executable output in the same directory, titled `cchess`
 
 # Running
 
+In the command line, simply enter `./cchess` or `.\cchess.exe`. Run with the
+`--help` or `-h` flag to see usage and help notes.
+
 `cchess` will obviously need to print the chess board. This can be done in
 unicode or ASCII. You can specify at the command line, with `--utf8` or
 `--ascii`. If no flag is given, the program defaults to ASCII.
