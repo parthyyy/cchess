@@ -24,8 +24,9 @@ Can also get a "yes" or "no" response.
 	@return 	str containg the command. 
 
 	But really, the return value just points to the contents of *buffer.
-	strtok()'s destructiveness allows the caller to treat *buffer as
-	a string.
+	strtok()'s destructiveness allows the caller to treat tne entire 
+	buffer as one safely null-terminated string, even if garbage chars 
+	may be left over in some parts of it
 
 	Read in cmdline input into a buffer to get a command.
 	Treats the first token separated by whitespaces as the command.
@@ -67,8 +68,8 @@ static void to_lowercase(char* s)
 
 	@return 	enum type of the command
 
-	The way this module is designed, char* command should point to a
-	location within the buffer used in get_command(), i.e., the
+	The way this module is designed, char* command should point to
+	a location within the buffer used in get_command(), i.e., the
 	*command parameter should be the return value of get_command()
 
 	When validating a MOVE command, IT ONLY VALIDATES THE SYNTAX!!!
@@ -93,6 +94,7 @@ int validate_command(char* command)
 		case 'f': return FLIP;
 		case 'q': return QUIT;
 		case 'h': return HELP;
+		default:  return ILLEGAL;
 		}
 	}
 	// if not a single char, it must be a move command
@@ -110,7 +112,7 @@ int validate_command(char* command)
 		}
 	}
 
-        // valid long algebraic notation:
+	// valid long algebraic notation:
 	// char* "e 2 e 4"
 	// index  0 1 2 3
 	int char0 = command[0] >= 'a' && command[0] <= 'h';

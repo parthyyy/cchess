@@ -10,6 +10,10 @@ cchess is a chess game on the command line, implemented in C.
 
 
 
-# To do
+# Future features
 
 Implement chess variants
+
+Add a GUI
+
+Make my own engine AI
