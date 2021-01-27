@@ -42,4 +42,4 @@ as `yes`.
 
 * Implement chess variants (chess960, chaturanga, Capablanca chess, etc.)
 * Add a GUI
-* Make my own engine AI as the AI opponent
+* Make my own engine as the AI opponent
