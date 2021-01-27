@@ -7,10 +7,10 @@ cchess is a chess game on the command line, implemented in C.
 In cchess, you can:
 
 * Enjoy 1-player or 2-player games
- * 1-player games will pit you against a chess engine
- * You are allowed to choose your color against the AI.
+  * 1-player games will pit you against a chess engine
+  * You are allowed to choose your color against the AI.
 * Save your games
- * cchess has its own savefile format, where you can save in-progress 
+  * cchess has its own savefile format, where you can save in-progress 
    games, load them later, and continue playing
 
 You can also:
@@ -18,7 +18,7 @@ You can also:
 * Resign the game. You lose.
 * Offer a draw. You and your opponent agree that no one wins.
 * Quit the program. You end the game, but no result is declared yet.
- * Here, you will have the option of saving a game.
+  * Here, you will have the option of saving a game.
 
 # Installing
 
