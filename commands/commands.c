@@ -23,13 +23,15 @@ Can also get a "yes" or "no" response.
 
 	@return 	str containg the command. 
 
-	But really, the return value just points to the contents of *buffer.
-	strtok()'s destructiveness allows the caller to treat tne entire 
-	buffer as one safely null-terminated string, even if garbage chars 
-	may be left over in some parts of it
+	But really, the return value just points to the contents
+	of *buffer. strtok()'s destructiveness allows the caller
+	to treat tne entire buffer as one safely null-terminated
+	string, even if garbage chars may be left over in some
+	parts of it.
 
 	Read in cmdline input into a buffer to get a command.
-	Treats the first token separated by whitespaces as the command.
+	Treats the first token separated by whitespaces as the 
+	command.
 */
 char* get_command(char* buffer, const int buffer_size, const int turn)
 {
@@ -63,56 +65,66 @@ static void to_lowercase(char* s)
 	}
 }
 
-/* validate_command()
-	@command 	string containing the user's inputted command
+/* validate_one_char()
 
-	@return 	enum type of the command
-
-	The way this module is designed, char* command should point to
-	a location within the buffer used in get_command(), i.e., the
-	*command parameter should be the return value of get_command()
-
-	When validating a MOVE command, IT ONLY VALIDATES THE SYNTAX!!!
-	The move.c module will validate if it's a LEGAL move or not
-
-	Validates the SYNTAX of a command retrieved by get_command().
+	Validates a single-character command.
 */
-int validate_command(char* command)
+static int validate_one_char(char c)
 {
-	int len = strlen(command);
-
-	// convert to lowercase for easier checking
-	to_lowercase(command);
-
-	// single-char commands
-	if (len == 1)
+	switch (c)
 	{
-		switch (command[0])
-		{
-		case 'r': return RESIGN;
-		case 'd': return DRAW;
-		case 'f': return FLIP;
-		case 'q': return QUIT;
-		case 'h': return HELP;
-		default:  return ILLEGAL;
-		}
+	case 'r': return RESIGN;
+	case 'd': return DRAW;
+	case 'f': return FLIP;
+	case 'q': return QUIT;
+	case 'h': return HELP;
+	default:  return ILLEGAL;
 	}
-	// if not a single char, it must be a move command
+}
 
-	// validate pawn promotion piece
-	if (len == 5)
+/* validate_promotion()
+
+	Validates a promotion move. Must go from 7th rank to 8th
+	rank. Promotion file must be within 1 char of the starting
+	file and on a legal file e.g. e7 > d8,e8,f8 or a7 > a8,b8
+*/
+static int validate_promotion(char* command)
+{
+	int sq1 = command[0] >= 'a' && command[0] <= 'h';
+	int sq2 = command[2] >= 'a' && command[2] <= 'h';
+
+	// the check for promo_sq will check for moves like
+	// h7i8q, but sq1 and sq2 take care of that
+	int promo_sq =  command[0] == command[2]-1 ||
+			command[0] == command[2]   ||
+			command[0] == command[2]+1;
+
+	int first_rank = command[1] == '7';
+	int promo_rank = command[3] == '8';
+
+	if (sq1 && sq2 && first_rank && promo_rank && promo_sq)
 	{
 		switch (command[4])
 		{
-		case 'n':	  // knight
-		case 'b':	  // bishop
-		case 'r':	  // rook
-		case 'q': break;  // queen
-		default: return ILLEGAL;
+		case 'n':
+		case 'b':
+		case 'r':
+		case 'q': return MOVE;
+		default:  return ILLEGAL;
 		}
 	}
+	return ILLEGAL;
+}
 
-	// valid long algebraic notation:
+/* validate_move()
+
+	Validates a move command. Must start and end on a legal file,
+	i.e. file a through h. Must start and end on a legal rank,
+	i.e. rank 1 through 8.
+*/
+static int validate_move(char* command)
+{
+	// check each index:
 	// char* "e 2 e 4"
 	// index  0 1 2 3
 	int char0 = command[0] >= 'a' && command[0] <= 'h';
@@ -121,9 +133,55 @@ int validate_command(char* command)
 	int char1 = command[1] >= '1' && command[1] <= '8';
 	int char3 = command[3] >= '1' && command[3] <= '8';
 
-	if (char0 && char1 && char2 && char3)
+	int same_sq = command[0] == command [2] &&
+			  command[1] == command[3];
+
+	if (char0 && char1 && char2 && char3 && !same_sq)
 	{
 		return MOVE;
+	}
+	return ILLEGAL;
+}
+
+/* validate_command()
+	@command 	str containing user's inputted command
+
+	@return 	enum type of the command
+
+	The way this module is designed, char* command should point
+	to a location within the buffer used in get_command(),
+	i.e., the *command parameter should be the return value
+	of get_command()
+
+	When validating MOVE command, IT ONLY VALIDATES SYNTAX!!!
+	The move.c module should  validate if it's a LEGAL move or
+	not when given the board position.
+
+	Validates the SYNTAX of command retrieved by get_command()
+*/
+int validate_command(char* command)
+{
+	int len = strlen(command);
+
+	// convert to lowercase for easier checking
+	// commands are case-insensitive anyways
+	to_lowercase(command);
+
+	// single-char commands
+	if (len == 1)
+	{
+		// r d f h q
+		return validate_one_char(command[0]);
+	}
+	else if (len == 4)
+	{
+		// e.g. e2e4
+		return validate_move(command);
+	}
+	else if (len == 5)
+	{
+		// e.g. a7a8q
+		return validate_promotion(command);
 	}
 	return ILLEGAL;
 }
