@@ -68,6 +68,7 @@ static void to_lowercase(char* s)
 /* validate_one_char()
 
 	Validates a single-character command.
+	Returns its command type.
 */
 static int validate_one_char(char c)
 {
@@ -87,6 +88,7 @@ static int validate_one_char(char c)
 	Validates a promotion move. Must go from 7th rank to 8th
 	rank. Promotion file must be within 1 char of the starting
 	file and on a legal file e.g. e7 > d8,e8,f8 or a7 > a8,b8
+	Returns MOVE (it's a legal command) or ILLEGAL.
 */
 static int validate_promotion(char* command)
 {
@@ -121,6 +123,7 @@ static int validate_promotion(char* command)
 	Validates a move command. Must start and end on legal file,
 	i.e. file a through h. Must start and end on legal rank,
 	i.e. rank 1 through 8.
+	Returns MOVE (it's a legal command) or ILLEGAL.
 */
 static int validate_move(char* command)
 {
@@ -148,14 +151,14 @@ static int validate_move(char* command)
 
 	@return 	enum type of the command
 
-	The way this module is designed, char* command should point
-	to a location within the buffer used in get_command(),
-	i.e., the *command parameter should be the return value
-	of get_command()
+	The way this module is designed, char* command should 
+	point to a location within the buffer used in
+	get_command(), i.e., the paramter *command should be
+	the return value of get_command()
 
-	When validating MOVE command, IT ONLY VALIDATES SYNTAX!!!
-	The move.c module should  validate if it's a LEGAL move or
-	not when given the board position.
+	When validating MOVE command, IT ONLY VALIDATES SYNTAX!
+	The move.c module should  validate if it's a LEGAL move
+	or not when given the board position.
 
 	Validates the SYNTAX of command retrieved by get_command()
 */
@@ -167,20 +170,19 @@ int validate_command(char* command)
 	// commands are case-insensitive anyways
 	to_lowercase(command);
 
-	// single-char commands
 	if (len == 1)
 	{
-		// r d f h q
+		// single-char commands i.e. r d f h q
 		return validate_one_char(command[0]);
 	}
 	else if (len == 4)
 	{
-		// e.g. e2e4
+		// normal moves e.g. e2e4
 		return validate_move(command);
 	}
 	else if (len == 5)
 	{
-		// e.g. a7a8q
+		// pawn promotion e.g. a7a8q
 		return validate_promotion(command);
 	}
 	return ILLEGAL;
