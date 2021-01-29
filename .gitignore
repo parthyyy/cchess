@@ -5,3 +5,4 @@ game/test_game
 tests/
 boards/
 todo.txt
+pseudo.c

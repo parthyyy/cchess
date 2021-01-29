@@ -18,7 +18,7 @@ Can also get a "yes" or "no" response.
 
 /* get_command()
 	@buffer 	char array to place user's input
-	@buffer_size 	max num of chars to read, including '\0'
+	@size 		max num of chars to read, including '\0'
 	@turn 		current turn: BLACK or WHITE
 
 	@return 	str containg the command. 
@@ -33,7 +33,7 @@ Can also get a "yes" or "no" response.
 	Treats the first token separated by whitespaces as the 
 	command.
 */
-char* get_command(char* buffer, const int buffer_size, const int turn)
+char* get_command(char* buffer, const int size, const int turn)
 {
 	char delims[] = " \r\n\t";
 	char* token = NULL;
@@ -42,12 +42,12 @@ char* get_command(char* buffer, const int buffer_size, const int turn)
 
 	do
 	{
-		fgets(buffer, buffer_size, stdin);
+		fgets(buffer, size, stdin);
 	} while ((token = strtok(buffer, delims)) == NULL);
 
 	// returning local ptr, but only the address it contains
-	// is important. main() will still be able to use it because
-	// it accesses the contents of *buffer
+	// is important. main() will still be able to use it
+	// because it accesses the contents of *buffer
 	return token;
 }
 
@@ -118,8 +118,8 @@ static int validate_promotion(char* command)
 
 /* validate_move()
 
-	Validates a move command. Must start and end on a legal file,
-	i.e. file a through h. Must start and end on a legal rank,
+	Validates a move command. Must start and end on legal file,
+	i.e. file a through h. Must start and end on legal rank,
 	i.e. rank 1 through 8.
 */
 static int validate_move(char* command)
@@ -134,7 +134,7 @@ static int validate_move(char* command)
 	int char3 = command[3] >= '1' && command[3] <= '8';
 
 	int same_sq = command[0] == command [2] &&
-			  command[1] == command[3];
+		      command[1] == command[3];
 
 	if (char0 && char1 && char2 && char3 && !same_sq)
 	{
@@ -209,21 +209,21 @@ static int validate_yn(char* str)
 
 /* get_yn()
 	@buffer 	char array to place user's input
-	@buffer_size 	max num of chars to read, including '\0'
+	@size 		max num of chars to read, including '\0'
 	@turn 		current turn: BLACK or WHITE
 
 	@return 	user's answer, YES or NO
 
-	Gets a yes-no response from user input. Asks for input until
-	valid response is given.
+	Gets a yes-no response from user input. Asks for input
+	until valid response is given.
 */
-int get_yn(char* buffer, const int buffer_size, const int turn)
+int get_yn(char* buffer, const int size, const int turn)
 {
 	char* input = NULL;
 	int answer;
 	do
 	{
-		input = get_command(buffer, buffer_size, turn);
+		input = get_command(buffer, size, turn);
 	} while ((answer = validate_yn(input)) == ILLEGAL);
 	return answer;
 }

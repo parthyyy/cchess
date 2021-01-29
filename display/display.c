@@ -33,6 +33,13 @@ void flip_board(int* p_orient)
 // ADD uint64_t board IF USING BITBOARDS else ADD char board[][]
 void print_board(/* board, */const int orient, const int turn, const int ascii)
 {
+
+/***********************************************************************
+
+maybe move these strings to display.h, and #define them as macros?
+
+***********************************************************************/
+
 	char ascii_top_bottom[] = "   +-------------------------------+\n";
 	//char ascii_row[]        = "   ---------------------------------\n";
 

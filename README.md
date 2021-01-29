@@ -25,8 +25,8 @@ You can also:
 To install cchess, download the latest executable from the releases page. 
 
 If you want to compile the source code by yourself, clone the repository first.
-Enter the root directory of the source code, and run the makefile. It should
-produce an executable output in the same directory, titled `cchess`
+Enter the root directory of the source code, and run the `Makefile`. It should
+produce an executable output in the same directory, titled `cchess` or `cchess.exe`
 
 # Running
 

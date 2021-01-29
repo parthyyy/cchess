@@ -11,20 +11,21 @@ Print a help menu.
 
 #include "../commands/commands.h"
 #include "../colors.h"
+#include "game.h"
 
 /* resign()
 	@buffer 	char array to place user's input
-	@buffer_size 	max num of chars to read, including '\0'
+	@size 		max num of chars to read, including '\0'
 	@turn 		current turn: BLACK or WHITE
 
 	@return 	user's confirmation, YES or NO
 
 	Resign the game. Asks for confirmation.
 */
-int resign(char* buffer, const int buffer_size, const int turn)
+int resign(char* buffer, const int size, const int turn)
 {
 	printf("\nAre you sure you want to resign?\n");
-	return get_yn(buffer, buffer_size, turn);
+	return get_yn(buffer, size, turn);
 }
 
 /* quit()
@@ -34,17 +35,17 @@ int resign(char* buffer, const int buffer_size, const int turn)
 	condensing quit() and resign() without using even more lines
 	of code.
 */
-int quit(char* buffer, const int buffer_size, const int turn)
+int quit(char* buffer, const int size, const int turn)
 {
 	printf("\nAre you sure you want to quit?\n");
-	return get_yn(buffer, buffer_size, turn);
+	return get_yn(buffer, size, turn);
 }
 
 /* offer_draw()
 
 	Offer a draw. Asks for confirmation.
 */
-int offer_draw(char* buffer, const int buffer_size, const int turn)
+int offer_draw(char* buffer, const int size, const int turn)
 {
 	int accepted;
 
@@ -53,46 +54,51 @@ int offer_draw(char* buffer, const int buffer_size, const int turn)
 
 	printf("Do you accept?\n");
 	// prompting the OPPONENT now, so use !turn
-	accepted = get_yn(buffer, buffer_size, !turn);
+	accepted = get_yn(buffer, size, !turn);
 
 	if (accepted)
 	{
 		printf("Are you sure?\n");
-		return get_yn(buffer, buffer_size, !turn);
+		return get_yn(buffer, size, !turn);
 	}
 	return accepted; // declined
 }
 
 /* help()
 
-	Prints a help menu. Lists every command and their functionality.
+	Prints a help menu. Lists every command and their
+	functionality.
 	Explains how you can enter them and also make moves.
+	See game.h for the actual text.
 */
 void help(void)
 {
-	// I used puts() to make the line length shorter
-	puts("\n                 ********* HELP MENU *********");
-	puts("\nCOMMAND LIST.");
-	puts("   1. r    Resign - forfeit and give your opponent victory.");
-	puts("   2. d    Draw   - offer a draw to your opponent.");
-	puts("   3. f    Flip   - flip the orientation of the board.");
-	puts("   4. q    Quit   - quit the program (not the game!)");
-	puts("   5. h    Help   - display this message.");
+	// the internet says to use puts when printing variables
+	// does that apply to constants? I don't wanna risk it
+	puts(TITLE);
 
-	puts("\nMOVING PIECES.");
-	puts("   Enter moves in long algebraic notation. Specify the starting");
-	puts("   square, and then the ending square. For example: e2e4");
-	puts("   For pawn promotion, specify the piece abbreviation after the");
-	puts("   move. For example: d7d8q e7e8r a7a8b h7h8n");
+	puts(HEAD1);
+	puts(COM1);
+	puts(COM2);
+	puts(COM3);
+	puts(COM4);
+	puts(COM5);
 
-	puts("\nALL COMMANDS ARE CASE INSENSITIVE!");
-	puts("   There is no difference between any of these:");
+	puts(HEAD2);
+	puts(LINE1);
+	puts(LINE2);
+	puts(LINE3);
+	puts(LINE4);
 
-	puts("      e2e4  E2E4");
-	puts("      e7e8q E7E8Q");
-	puts("      e2E3  E2e3");
-	puts("      Q     q");
+	puts(HEAD3);
+	puts(DESC);
 
-	puts("\nPRESS ENTER TO CONTINUE. . . ");
+	puts(EX1);
+	puts(EX2);
+	puts(EX3);
+	puts(EX4);
+
+	puts(PROMPT);
+
 	getchar();
 }
