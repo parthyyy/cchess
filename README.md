@@ -1,10 +1,11 @@
 # cchess
 
-cchess is a chess game on the command line, implemented in C.
+`cchess` is a chess game on the command line, implemented in C. `cchess` obeys
+all the rules of modern chess.
 
 # Features
 
-In cchess, you can:
+In `cchess`, you can:
 
 * Enjoy 1-player or 2-player games
   * 1-player games will pit you against a chess engine
@@ -22,11 +23,13 @@ You can also:
 
 # Installing
 
-To install cchess, download the latest executable from the releases page. 
+To install `cchess`, you can download the latest executable from the releases
+page.
 
 If you want to compile the source code by yourself, clone the repository first.
 Enter the root directory of the source code, and run the `Makefile`. It should
-produce an executable output in the same directory, titled `cchess` or `cchess.exe`
+produce an executable output in the same directory, titled `cchess` or
+`cchess.exe`
 
 # Running
 
@@ -37,12 +40,17 @@ In the command line, simply enter `./cchess` or `.\cchess.exe`. Run with the
 unicode or ASCII. You can specify at the command line, with `--utf8` or
 `--ascii`. If no flag is given, the program defaults to ASCII.
 
-The game will read input that you enter. It stops reading after the first
-whitespace character. Entering commands like `yes no` will be interpreted
-as `yes`.
+The game will read keyboard input that you enter. It stops reading after the
+first whitespace character. Entering commands like `yes no` will be
+interpreted as `yes`.
 
 # Possible future features
 
 * Implement chess variants (chess960, chaturanga, Capablanca chess, etc.)
 * Add a GUI
 * Make my own engine as the AI opponent
+
+# Known bugs
+
+* (Linux) Entering ctrl-D after being prompted for input will cause an 
+infinite loop.

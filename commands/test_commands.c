@@ -1,4 +1,4 @@
-/** commands/test_main.c
+/** commands/test_commands.c
 
 TESTS FOR THE commands.c MODULE
 

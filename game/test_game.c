@@ -1,4 +1,4 @@
-/** game/test_main.c 
+/** game/test_game.c 
 
 Tests the game.c module.
 
