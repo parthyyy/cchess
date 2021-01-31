@@ -100,7 +100,8 @@ void test_illegal_commands(void)
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("I LOOOOOVE CHESS!!! :))))"));
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("i hate chess :( wahhhh"));
 	//TEST_ASSERT_EQUAL(ILLEGAL, validate_command("rm / -rf"));
-	// I'm too scared to try this test. Will you, the reader reviewing this code, have the faith to try?
+	// I'm too scared to try this test. I know it shouldn't do anything, but I can't do it.
+	// Will you, the reader reviewing this code, have the faith to try?
 
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("rr"));
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("dd"));
