@@ -94,11 +94,13 @@ void test_illegal_commands(void)
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("ksdjbf"));
 
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("uzi hitman is a really good singer and you should check out his music"));
-	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("^^^ seriously tho you should"));
+	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("^^^ seriously tho you should: https://www.youtube.com/watch?v=GowEIZKbVuc"));
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("123456"));
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command(""));
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("I LOOOOOVE CHESS!!! :))))"));
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("i hate chess :( wahhhh"));
+	//TEST_ASSERT_EQUAL(ILLEGAL, validate_command("rm / -rf"));
+	// I'm too scared to try this test. Will you, the reader reviewing this code, have the faith to try?
 
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("rr"));
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("dd"));
