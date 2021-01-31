@@ -6,8 +6,8 @@ TESTS FOR THE commands.c MODULE
 
 #include <stdio.h>
 
-#include "commands.h"
-#include "../colors.h"
+#include "../../src/commands.h"
+#include "../../src/colors.h"
 
 #define BUFFER_SIZE 1024
 

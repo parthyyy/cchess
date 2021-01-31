@@ -14,7 +14,7 @@ Can also get a "yes" or "no" response.
 #include <string.h>
 
 #include "commands.h"
-#include "../colors.h"
+#include "colors.h"
 
 /* get_command()
 	@buffer 	char array to place user's input

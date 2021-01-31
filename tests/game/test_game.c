@@ -6,8 +6,8 @@ Tests the game.c module.
 
 #include <stdio.h>
 
-#include "game.h"
-#include "../colors.h"
+#include "../../src/game.h"
+#include "../../src/colors.h"
 
 #define BUFFER_SIZE 1024
 

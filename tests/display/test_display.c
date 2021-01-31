@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-#include "display.h"
-#include "../colors.h"
+#include "../../src/display.h"
+#include "../../src/colors.h"
 
 void print_color(int color)
 {

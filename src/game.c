@@ -9,8 +9,8 @@ Print a help menu.
 
 #include <stdio.h>
 
-#include "../commands/commands.h"
-#include "../colors.h"
+#include "commands.h"
+#include "colors.h"
 #include "game.h"
 
 /* resign()

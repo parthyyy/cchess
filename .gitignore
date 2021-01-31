@@ -1,8 +1,6 @@
-display/test_display
-commands/test_commands
-commands/com-test/
-game/test_game
-tests/
-boards/
 todo.txt
 pseudo.txt
+tests/commands/test_commands
+tests/display/test_display
+tests/game/test_game
+tests/com-test/test
