@@ -25,9 +25,9 @@ Can also get a "yes" or "no" response.
 
 	But really, the return value just points to the contents
 	of *buffer. strtok()'s destructiveness allows the caller
-	to treat tne entire buffer as one safely null-terminated
+	to treat the entire buffer as one safely null-terminated
 	string, even if garbage chars may be left over in some
-	parts of it.
+	parts of it. strtok() just cuts out the garbage for us.
 
 	Read in cmdline input into a buffer to get a command.
 	Treats the first token separated by whitespaces as the 
@@ -165,25 +165,33 @@ static int validate_move(char* command)
 int validate_command(char* command)
 {
 	int len = strlen(command);
+	char copy[len+1];
 
 	// convert to lowercase for easier checking
 	// commands are case-insensitive anyways
-	to_lowercase(command);
+	strcpy(copy, command);
+	/*
+	I have to use a strcpy here because the Unity tests pass in
+	a string literal to this function, and when this func used
+	to call to_lowercase(command), it segfaults because you
+	can't dereference the memory of a literal... I think.
+	*/
+	to_lowercase(copy);
 
 	if (len == 1)
 	{
 		// single-char commands i.e. r d f h q
-		return validate_one_char(command[0]);
+		return validate_one_char(copy[0]);
 	}
 	else if (len == 4)
 	{
 		// normal moves e.g. e2e4
-		return validate_move(command);
+		return validate_move(copy);
 	}
 	else if (len == 5)
 	{
 		// pawn promotion e.g. a7a8q
-		return validate_promotion(command);
+		return validate_promotion(copy);
 	}
 	return ILLEGAL;
 }
