@@ -6,7 +6,6 @@ cchess is a chess game on the command line, implemented in C.
 
 * gcc compiler
 * Make
-* Unity (if you want to run my unit tests)
 
 # Features
 
@@ -17,7 +16,7 @@ In cchess, you can:
   * You are allowed to choose your color against the AI.
 * Save your games
   * cchess has its own savefile format, where you can save in-progress 
-   games, load them later, and continue playing
+    games, load them later, and continue playing
 
 You can also:
 
