@@ -1,6 +1,6 @@
 todo.txt
 pseudo.txt
-tests/commands/test_commands
-tests/display/test_display
-tests/game/test_game
-tests/com-test/test
+test/commands/test_commands
+test/display/test_display
+test/game/test_game
+test/com_test/test
