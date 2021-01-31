@@ -97,6 +97,7 @@ void test_illegal_commands(void)
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("^^^ seriously tho you should: https://www.youtube.com/watch?v=GowEIZKbVuc"));
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("123456"));
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command(""));
+	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("enyniwy58qcfn57q65dq7835dq783y5oqwyqdoay35dq7o45yqo7y54o7qy4o87qyd578qoy4f78qoay4d87oqy45d87oa7y54a87y5a7uy7ao85ynn7aow4y6289nc573298c789q7nc8w9urcoiseu5w35y9n8wncy297ycqniuuaowruq28m5985yn9820000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"));
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("I LOOOOOVE CHESS!!! :))))"));
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("i hate chess :( wahhhh"));
 	//TEST_ASSERT_EQUAL(ILLEGAL, validate_command("rm / -rf"));
