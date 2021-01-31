@@ -2,6 +2,12 @@
 
 cchess is a chess game on the command line, implemented in C.
 
+# Prerequisites
+
+* gcc compiler
+* Make
+* Unity (if you want to run my unit tests)
+
 # Features
 
 In cchess, you can:

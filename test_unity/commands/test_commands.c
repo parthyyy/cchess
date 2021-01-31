@@ -6,9 +6,9 @@ void tearDown(void) {}
 
 /* Sorry Unity devs, but I don't use camelCase. */
 
+/* These should always return MOVE */
 void test_legal_moves(void)
 {
-	// should always return MOVE
 	TEST_ASSERT_EQUAL(MOVE, validate_command("e2e4"));
 	TEST_ASSERT_EQUAL(MOVE, validate_command("e7e5"));
 	TEST_ASSERT_EQUAL(MOVE, validate_command("a1a7"));
@@ -18,9 +18,9 @@ void test_legal_moves(void)
 	TEST_ASSERT_EQUAL(MOVE, validate_command("e5f6"));
 }
 
+/* These should always return ILLEGAL */
 void test_illegal_moves(void)
 {
-	// should always return ILLEGAL
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("a1a1"));
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("a9a9"));
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("e8e9"));
@@ -39,9 +39,9 @@ void test_illegal_moves(void)
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("z6j8r"));
 }
 
+/* These should always return MOVE */
 void test_pawn_promotion(void)
 {
-	// should always return MOVE
 	TEST_ASSERT_EQUAL(MOVE, validate_command("a7a8q"));
 	TEST_ASSERT_EQUAL(MOVE, validate_command("a7a8r"));
 	TEST_ASSERT_EQUAL(MOVE, validate_command("a7a8b"));
@@ -68,9 +68,9 @@ void test_pawn_promotion(void)
 	TEST_ASSERT_EQUAL(MOVE, validate_command("e7f8n"));
 }
 
+/* These should always return one of the command enums */
 void test_legal_commands(void)
 {
-	// should always return one of the command enums
 	TEST_ASSERT_EQUAL(RESIGN, validate_command("r"));
 	TEST_ASSERT_EQUAL(DRAW, validate_command("d"));
 	TEST_ASSERT_EQUAL(FLIP, validate_command("f"));
@@ -84,9 +84,9 @@ void test_legal_commands(void)
 	TEST_ASSERT_EQUAL(QUIT, validate_command("Q"));
 }
 
+/* These should always return ILLEGAL */
 void test_illegal_commands(void)
 {
-	// should always return ILLEGAL
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("win"));
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("free checkmate"));
 	TEST_ASSERT_EQUAL(ILLEGAL, validate_command("cheats"));
