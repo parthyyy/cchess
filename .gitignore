@@ -6,3 +6,4 @@ test/game/test_game
 test/com_test/test
 test_unity/commands/gen_legal_moves.py
 test_unity/commands/test_commands
+.vscode/

@@ -13,6 +13,20 @@ Print a help menu.
 #include "colors.h"
 #include "game.h"
 
+/* ARE_YOU_SURE()
+	@msg 		action to confirm, e.g. "resign"
+	@buffer 	char array to place user's input
+	@size 		max num of chars to read, including '\0'
+	@turn 		current turn: BLACK or WHITE
+
+	@return 	user's confirmation, YES or NO
+
+	Macro for asking for confirmation on a command.
+*/
+#define ARE_YOU_SURE(msg, buffer, size, turn)            \
+	printf("\nAre you sure you want to %s?\n", msg); \
+	return get_yn(buffer, size, turn);
+
 /* resign()
 	@buffer 	char array to place user's input
 	@size 		max num of chars to read, including '\0'
@@ -24,21 +38,16 @@ Print a help menu.
 */
 int resign(char* buffer, const int size, const int turn)
 {
-	printf("\nAre you sure you want to resign?\n");
-	return get_yn(buffer, size, turn);
+	ARE_YOU_SURE("resign", buffer, size, turn);
 }
 
 /* quit()
 
 	Quit the game. Asks for confirmation.
-	I know I'm violating DRY but I can't find a nice solution of
-	condensing quit() and resign() without using even more lines
-	of code.
 */
 int quit(char* buffer, const int size, const int turn)
 {
-	printf("\nAre you sure you want to quit?\n");
-	return get_yn(buffer, size, turn);
+	ARE_YOU_SURE("quit", buffer, size, turn);
 }
 
 /* offer_draw()
@@ -58,8 +67,7 @@ int offer_draw(char* buffer, const int size, const int turn)
 
 	if (accepted)
 	{
-		printf("Are you sure?\n");
-		return get_yn(buffer, size, !turn);
+		ARE_YOU_SURE("accept", buffer, size, !turn);
 	}
 	return accepted; // declined
 }
