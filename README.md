@@ -43,8 +43,7 @@ unicode or ASCII. You can specify at the command line, with `--utf8` or
 `--ascii`. If no flag is given, the program defaults to ASCII.
 
 The game will read input that you enter. It stops reading after the first
-whitespace character. Entering commands like `yes no` will be interpreted
-as `yes`.
+whitespace character. A command like `yes no` will be interpreted as `yes`.
 
 # Possible future features
 
