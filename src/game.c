@@ -13,13 +13,17 @@ Print a help menu.
 #include "colors.h"
 #include "game.h"
 
-/* ARE_YOU_SURE()
-	@msg 		action to confirm, e.g. "resign"
+/* ALL THESE USER INPUT FUNCTIONS USE THE SAME 3 CORE PARAMTERS
+   AND RETURN VALUES:
 	@buffer 	char array to place user's input
 	@size 		max num of chars to read, including '\0'
 	@turn 		current turn: BLACK or WHITE
 
 	@return 	user's confirmation, YES or NO
+*/
+
+/* ARE_YOU_SURE()
+	@msg 		action to confirm, e.g. "resign"
 
 	Macro for asking for confirmation on a command.
 */
@@ -28,11 +32,6 @@ Print a help menu.
 	return get_yn(buffer, size, turn);
 
 /* resign()
-	@buffer 	char array to place user's input
-	@size 		max num of chars to read, including '\0'
-	@turn 		current turn: BLACK or WHITE
-
-	@return 	user's confirmation, YES or NO
 
 	Resign the game. Asks for confirmation.
 */

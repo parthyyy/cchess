@@ -66,9 +66,9 @@ static void to_lowercase(char* s)
 }
 
 /* validate_one_char()
+	@return 	command enum type
 
 	Validates a single-character command.
-	Returns its command type.
 */
 static int validate_one_char(char c)
 {
@@ -84,11 +84,11 @@ static int validate_one_char(char c)
 }
 
 /* validate_promotion()
+	@return 	MOVE (it's a legal command) or ILLEGAL.
 
 	Validates a promotion move. Must go from 7th rank to 8th
 	rank. Promotion file must be within 1 char of the starting
 	file and on a legal file e.g. e7 > d8,e8,f8 or a7 > a8,b8
-	Returns MOVE (it's a legal command) or ILLEGAL.
 */
 static int validate_promotion(char* command)
 {
@@ -119,11 +119,11 @@ static int validate_promotion(char* command)
 }
 
 /* validate_move()
+	@return 	MOVE (it's a legal command) or ILLEGAL.
 
 	Validates a move command. Must start and end on legal file,
 	i.e. file a through h. Must start and end on legal rank,
 	i.e. rank 1 through 8.
-	Returns MOVE (it's a legal command) or ILLEGAL.
 */
 static int validate_move(char* command)
 {
@@ -197,8 +197,9 @@ int validate_command(char* command)
 /* validate_yn()
 	@str 		any string
 
-	Checks if a string is a yes or no. 
-	Returns the appropriate macro.
+	@return 	YES, NO, or ILLEGAL
+
+	Checks if a string is a yes or no.
 */
 static int validate_yn(char* str)
 {
