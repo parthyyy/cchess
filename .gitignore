@@ -7,3 +7,4 @@ test/com_test/test
 test_unity/commands/gen_legal_moves.py
 test_unity/commands/test_commands
 index_to_coords.py
+txt/
