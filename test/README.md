@@ -9,6 +9,6 @@ each module.
 
 This had the benefit of easily testing the functions which require
 user input. However I eventually wanted something more robust and
-practical, this method just felt bad. I discovered the Unity
+automated; this method just felt bad. I discovered the Unity
 framework, but it doesn't test cmdline input very well. So I have
 to keep both sets of tests, separately now.

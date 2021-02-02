@@ -15,7 +15,7 @@ In cchess, you can:
   * 1-player games will pit you against a chess engine
   * You are allowed to choose your color against the AI.
 * Save your games
-  * cchess has its own savefile format, where you can save in-progress 
+  * cchess has its own savefile format, where you can save in-progress
     games, load them later, and continue playing
 
 You can also:
@@ -27,7 +27,7 @@ You can also:
 
 # Installing
 
-To install cchess, download the latest executable from the releases page. 
+To install cchess, download the latest executable from the releases page.
 
 If you want to compile the source code by yourself, clone the repository first.
 Enter the root directory of the source code, and run the `Makefile`. It should

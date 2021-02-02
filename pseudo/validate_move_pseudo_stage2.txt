@@ -1,0 +1,76 @@
+STAGE 2: LEGAL DESTINATION
+PART 2: LEGAL SQUARE (either empty or opponent's piece)
+
+GUARANTEED KNOWLEDGE:
+	PIECE EXISTS ON SOURCE SQUARE
+	OWN COLOR'S PIECE DOES NOT EXIST ON DESTINATION SQUARE
+	THAT PIECE'S TYPE
+	FULL MOVE COMMAND
+
+a1h8
+a       1          h           8
+src_num src_letter dest_letter dest_num
+
+*********************************************************************
+BISHOP LEGALITY FORMULA:
+	|dest_num - src_num| = |dest_letter - src_letter|
+
+*********************************************************************
+EXAMPLE 1: BISHOP PAIR
+ 8    0, 0, 0, 0, 0, 0, 1, 0,
+ 7    1, 0, 0, 0, 0, 1, 0, 0,
+ 6    0, 1, 0, 0, 1, 0, 0, 0,
+ 5    0, 0, 1, 1, 0, 0, 0, 0,
+ 4    0, 0, 1, 1, 0, 0, 0, 1,
+ 3    0, 1, 0, 0, 1, 0, 1, 0,
+ 2    X, 0, 0, 0, 0, X, 0, 0,
+ 1    0, 1, 0, 0, 1, 0, 1, 0
+
+      a  b  c  d  e  f  g  h
+
+LEGAL   a2f7
+LEGAL   f2b6
+ILLEGAL f2c4
+
+LEGAL   a2f7
+	|7 - 2| = 5 = |'f' - 'a'| = |102 - 97| = 5
+
+LEGAL   f2b6
+	|6 - 2| = 4 = |'b' - 'f'| = |98 - 102| = |-4| = 4
+
+ILLEGAL f2c4
+	|4 - 2| = 2 != |'c' - 'f'| = |99 - 102| = |-3| = 3
+
+*********************************************************************
+ROOK LEGALITY FORMULA:
+	- the start and end FILE are identical, XOR the start and
+	end RANK are identical:
+
+	(|dest_letter - src_letter|) == 0 XOR (|dest_num  - src_num| == 0)
+	!(|dest_letter - src_letter|) ^ !(|dest_num - src_num|)
+
+*********************************************************************
+EXAMPLE 2: ROOK PAIR
+ 8    0, 0, 1, 0, 0, 0, 0, 1,
+ 7    0, 0, 1, 0, 0, 0, 0, 1,
+ 6    0, 0, 1, 0, 0, 0, 0, 1,
+ 5    0, 0, 1, 0, 0, 0, 0, 1,
+ 4    1, 1, 1, 1, 1, 1, 1, X,
+ 3    0, 0, 1, 0, 0, 0, 0, 1,
+ 2    1, 1, X, 1, 1, 1, 1, 1,
+ 1    0, 0, 1, 0, 0, 0, 0, 1
+
+      a  b  c  d  e  f  g  h
+
+LEGAL   h4d4
+LEGAL   h4c4
+LEGAL   c2c8
+ILLEGAL h4c3
+
+LEGAL   h4d4
+	|'d' - 'h'| == 0 XOR |4 - 4| == 0
+	|100 - 104| == 0 XOR |0| == 0
+	4 == 0 XOR 0 == 0
+	0 XOR 1
+	1
+
