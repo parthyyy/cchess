@@ -1,15 +1,27 @@
+FEB 2 2021
+	PSEUDOCODE LOGIC WORKED. SEE scratchpad/quick_and_dirty/test.c
+	STILL NEED TO IMPLEMENT KNIGHT, PAWN, AND KING LOGIC
+
+
+
+
+
+
+
+
 STAGE 2: LEGAL DESTINATION
-PART 2: LEGAL SQUARE (either empty or opponent's piece)
+PART 3: LEGAL SQUARE (either empty or opponent's piece)
 
 GUARANTEED KNOWLEDGE:
 	* PIECE EXISTS ON SOURCE SQUARE
 	* OWN COLOR'S PIECE DOES NOT EXIST ON DESTINATION SQUARE
 	* THE PIECE'S TYPE
 	* ATTACK BITBOARD ALREADY HAS PSEUDO-LEGAL MOVES
+		- BB IS SET AT DEST SQUARE (otherwise we wouldn't be checking this stage)
 		- UNKNOWN IF PINNED
 		- NO SELF-CAPTURE
 		- NO JUMPING (UNLESS VERIFYING KNIGHT)
-	* FULL MOVE COMMAND AS CHAR*
+	* FULL MOVE COMMAND AS char*
 
 a1h8
 a       1          h           8
@@ -56,6 +68,9 @@ ILLEGAL f2g5
 
 ILLEGAL f2h6
 	|6 - 2| = 4 != |'h' - 'f'| = |104 - 102| = 2
+
+
+
 
                              ROOKS
 **********************************************************************
@@ -156,7 +171,7 @@ LEGAL   c2a2:
 	2 == 6 XOR 'g' == 'c'
 	0 XOR 0
 	0
-	|2-6| == |'g' - 'c'|  // cdefg
+	|2-6| == |'g' - 'c'|  // c defg
 	4 == 4
 	1
 	0 XOR 1 == 1

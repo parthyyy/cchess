@@ -1,6 +1,7 @@
 todo.txt
 scratchpad/quick_and_dirty/test
 scratchpad/out*.txt
+scratchpad/out/
 test/commands/test_commands
 test/display/test_display
 test/game/test_game
