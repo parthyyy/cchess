@@ -9,6 +9,8 @@ check if this conversion worked
 cchess's algorithm will require me to be able
 to convert between bit indexes and (i,j) coordinates
 
+It me helps with planning with pseudocode.
+
 """
 
 

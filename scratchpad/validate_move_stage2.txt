@@ -1,0 +1,172 @@
+STAGE 2: LEGAL DESTINATION
+PART 2: LEGAL SQUARE (either empty or opponent's piece)
+
+GUARANTEED KNOWLEDGE:
+	* PIECE EXISTS ON SOURCE SQUARE
+	* OWN COLOR'S PIECE DOES NOT EXIST ON DESTINATION SQUARE
+	* THE PIECE'S TYPE
+	* ATTACK BITBOARD ALREADY HAS PSEUDO-LEGAL MOVES
+		- UNKNOWN IF PINNED
+		- NO SELF-CAPTURE
+		- NO JUMPING (UNLESS VERIFYING KNIGHT)
+	* FULL MOVE COMMAND AS CHAR*
+
+a1h8
+a       1          h           8
+src_num src_letter dest_letter dest_num
+
+
+
+
+                             BISHOPS
+**********************************************************************
+BISHOP LEGALITY FORMULA:
+	|dest_num - src_num| == |dest_letter - src_letter|
+
+**********************************************************************
+EXAMPLE 1: BISHOP PAIR
+ 8    0, 0, 0, 0, 0, 0, 1, 0,
+ 7    1, 0, 0, 0, 0, 1, 0, 0,
+ 6    0, 1, 0, 0, 1, 0, 0, 0,
+ 5    0, 0, 1, 1, 0, 0, 0, 0,
+ 4    0, 0, 1, 1, 0, 0, 0, 1,
+ 3    0, 1, 0, 0, 1, 0, 1, 0,
+ 2    X, 0, 0, 0, 0, X, 0, 0,
+ 1    0, 1, 0, 0, 1, 0, 1, 0
+
+      a  b  c  d  e  f  g  h
+
+LEGAL   a2f7
+LEGAL   f2b6
+ILLEGAL f2c4
+ILLEGAL f2g5
+ILLEGAL f2h6
+
+LEGAL   a2f7
+	|7 - 2| = 5 = |'f' - 'a'| = |102 - 97| = 5
+
+LEGAL   f2b6
+	|6 - 2| = 4 = |'b' - 'f'| = |98 - 102| = |-4| = 4
+
+ILLEGAL f2c4
+	|4 - 2| = 2 != |'c' - 'f'| = |99 - 102| = |-3| = 3
+
+ILLEGAL f2g5
+	|5 - 2| = 3 != |'g' - 'f'| = |103 - 102| = |1| = 1
+
+ILLEGAL f2h6
+	|6 - 2| = 4 != |'h' - 'f'| = |104 - 102| = 2
+
+                             ROOKS
+**********************************************************************
+ROOK LEGALITY FORMULA:
+	- the start and end FILE are identical, XOR the start and
+	end RANK are identical:
+
+	dest_letter == src_letter XOR dest_num == src_num
+
+**********************************************************************
+EXAMPLE 2: ROOK PAIR
+ 8    0, 0, 1, 0, 0, 0, 0, 1,
+ 7    0, 0, 1, 0, 0, 0, 0, 1,
+ 6    0, 0, 1, 0, 0, 0, 0, 1,
+ 5    0, 0, 1, 0, 0, 0, 0, 1,
+ 4    1, 1, 1, 1, 1, 1, 1, X,
+ 3    0, 0, 1, 0, 0, 0, 0, 1,
+ 2    1, 1, X, 1, 1, 1, 1, 1,
+ 1    0, 0, 1, 0, 0, 0, 0, 1
+
+      a  b  c  d  e  f  g  h
+
+LEGAL   h4d4
+LEGAL   h4c4
+LEGAL   c2c8
+ILLEGAL h4c3
+ILLEGAL h4c2
+
+LEGAL   h4d4
+	'd' == 'h' X0R 4 == 4
+	1 XOR 0
+	1
+
+LEGAL   h4c4
+	'c' == 'h' XOR 4 == 4
+	0 XOR 1
+	1
+
+ILLEGAL h4c3
+	'c' == 'h' XOR 3 == 4
+	0 XOR 0
+	0
+
+ILLEGAL h4c2
+	'c' == 'h' XOR 2 == 4
+	0 XOR 0
+	0
+
+
+
+
+                             QUEENS
+**********************************************************************
+QUEEN LEGALITY FORMULA:
+	legal_rook_move() XOR legal_bishop_move()
+
+**********************************************************************
+EXAMPLE 3: QUEENS
+ 8    2, 2, 3, 2, 2, 2, X, 2,
+ 7    0, 0, 1, 0, 0, 2, 2, 3,
+ 6    0, 0, 1, 0, 2, 0, 1, 0,
+ 5    0, 0, 1, 2, 0, 1, 2, 0,
+ 4    1, 0, 3, 0, 1, 0, 2, 0,
+ 3    0, 3, 1, 1, 0, 0, 2, 0,
+ 2    3, 1, X, 1, 1, 1, 3, 1,
+ 1    0, 1, 1, 1, 0, 0, 2, 0
+
+      a  b  c  d  e  f  g  h
+
+1 = queen 1
+2 = queen 2
+3 = both queens
+
+LEGAL   c2a2
+	c2b2
+	c2d1
+	c2g6
+	g8a2
+	g8c4
+	g8c8
+	g8e6
+
+ILLEGAL c2g8
+	g8c2
+	g8c6
+	g8e2
+
+LEGAL   c2a2:
+	2 == 2 XOR 'a' == 'c'
+	1 XOR 0
+	1
+	|2-2| == |'a'-'c'|
+	0 == 2
+	0
+	1 XOR 0 == 1
+
+	c2g6
+	2 == 6 XOR 'g' == 'c'
+	0 XOR 0
+	0
+	|2-6| == |'g' - 'c'|  // cdefg
+	4 == 4
+	1
+	0 XOR 1 == 1
+
+ILLEGAL c2g8
+	8 == 2 XOR 'g' == 'c'
+	0 XOR 0
+	0
+	|8-2| == |'g' - 'c'|
+	6 == 4
+	0
+	0 XOR 0 == 0
+
